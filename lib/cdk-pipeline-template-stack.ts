@@ -21,5 +21,11 @@ export class CdkPipelineTemplateStack extends Stack {
     pipeline.addStage(new PipelineAppStage(this, "beta", {
       env: { account: "550575751237", region: "us-west-2" }
     }));
+    pipeline.addStage(new PipelineAppStage(this, "prod-us", {
+      env: { account: "940414415893", region: "us-east-1" }
+    }));
+    pipeline.addStage(new PipelineAppStage(this, "prod-eu", {
+      env: { account: "531280046950", region: "eu-west-1" }
+    }));
   }
 }
