@@ -15,7 +15,7 @@ export class CdkPipelineTemplateStack extends Stack {
           connectionArn: 'arn:aws:codestar-connections:us-west-2:714496019310:connection/769cf32f-d119-4779-859b-77a3f0650947'
         }),
         additionalInputs: {
-          './lambda': CodePipelineSource.connection('newandimproved-dev/cdk-lambda-template', 'main', {
+          './lib/lambda': CodePipelineSource.connection('newandimproved-dev/cdk-lambda-template', 'main', {
             connectionArn: 'arn:aws:codestar-connections:us-west-2:714496019310:connection/769cf32f-d119-4779-859b-77a3f0650947'
           }),
         },
