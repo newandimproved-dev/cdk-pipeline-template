@@ -27,7 +27,7 @@ export class CdkPipelineTemplateStack extends Stack {
           connectionArn: 'arn:aws:codestar-connections:us-west-2:714496019310:connection/769cf32f-d119-4779-859b-77a3f0650947'
         }),
         additionalInputs: {
-          './lib/lambda': lambdaBuildStep.primaryOutputDirectory('./lib/lambda')
+          '/lib/lambda': lambdaBuildStep.primaryOutputDirectory('./lib/lambda')
         },
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
