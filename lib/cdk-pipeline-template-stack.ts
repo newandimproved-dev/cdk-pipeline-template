@@ -10,8 +10,7 @@ export class CdkPipelineTemplateStack extends Stack {
       pipelineName: 'MyPipeline',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.connection('newandimproved-dev/cdk-pipeline-template', 'main', {
-          connectionArn: '', 
-          triggerOnPush: true
+          connectionArn: 'arn:aws:codestar-connections:us-west-2:714496019310:connection/769cf32f-d119-4779-859b-77a3f0650947'
         }),
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
