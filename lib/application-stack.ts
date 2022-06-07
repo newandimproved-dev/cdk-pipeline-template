@@ -6,11 +6,11 @@ import { Stage } from '../constants/stage';
 export class ApplicationStack extends cdk.Stack {
     constructor(scope: Construct, id: string, stage: Stage, props?: cdk.StackProps) {
       super(scope, id, props);
-      const lambdaId = 'LambdaFunction-' + stage.stageName + '-' + stage.awsRegionCode;
+      const lambdaId = 'LambdaFunction-' + stage.awsRegionCode;
       new Function(this, lambdaId, {
         runtime: Runtime.JAVA_11,
         handler: 'CdkLambdaTemplate.Handler',
-        code: Code.fromAsset('lambda/target/*SNAPSHOT.jar')
+        code: Code.fromAsset('original-cdk-lambda-template-1.0-SNAPSHOT.jar')
       });
     }
 }
