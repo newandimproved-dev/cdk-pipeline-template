@@ -1,0 +1,1 @@
+export const lambdaArtifactId = 'cdk-lambda-template-artifact'
