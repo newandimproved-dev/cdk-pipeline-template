@@ -9,7 +9,7 @@ export class ApplicationStack extends cdk.Stack {
       new Function(this, 'LambdaFunction', {
         runtime: Runtime.JAVA_11,
         handler: 'CdkLambdaTemplate.Handler',
-        code: Code.fromAsset("")
+        code: Code.fromAsset('lambda', {exclude: ["cdk*"]})
       });
     }
 }
