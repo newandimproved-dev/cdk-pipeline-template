@@ -24,7 +24,7 @@ export class CdkPipelineTemplateStack extends Stack {
           buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3
       },
       input: lambdaCodePipelineSource,
-      commands: ['mvn clean install', `mvn clean package -DartifactId=${lambdaArtifactId}`]
+      commands: [`mvn clean install -DartifactId=${lambdaArtifactId}`, `mvn clean package -DartifactId=${lambdaArtifactId}`]
   })
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'CdkTemplatePipeline',
