@@ -16,4 +16,4 @@ export const betaStage : Stage = {
     stageName: 'beta'
 }
 
-export const allStages = [devStage, betaStage]
+export const allApplicationStages = [betaStage]
