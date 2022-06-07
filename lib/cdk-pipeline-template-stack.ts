@@ -5,7 +5,6 @@ import * as codebuild from 'aws-cdk-lib/aws-codebuild'
 import { PipelineAppStage } from './pipeline-app-stage';
 import { allApplicationStages } from '../constants/pipeline-stages';
 import { cdkGithubRepository, cdkGithubRepositoryBranch, codestarConnectionArn, lambdaGithubRepository, lambdaGithubRepositoryBranch } from '../constants/github-source-config';
-import { lambdaArtifactId } from '../constants/lambda-config';
 
 export class CdkPipelineTemplateStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -24,7 +23,7 @@ export class CdkPipelineTemplateStack extends Stack {
           buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3
       },
       input: lambdaCodePipelineSource,
-      commands: [`mvn clean install -DartifactId=cdk-lambda-template-artifact`, `mvn clean package -DartifactId=${lambdaArtifactId}`]
+      commands: [`mvn clean install`, `mvn clean package`]
   })
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'CdkTemplatePipeline',
