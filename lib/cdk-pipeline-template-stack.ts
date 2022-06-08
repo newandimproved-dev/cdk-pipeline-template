@@ -31,7 +31,7 @@ export class CdkPipelineTemplateStack extends Stack {
       synth: new ShellStep('Synth', {
         input: cdkCodePipelineSource,
         additionalInputs: {
-          'lambda': lambdaBuildStep.addOutputDirectory(''),
+          'lambda': lambdaBuildStep.primaryOutputDirectory('lambda'),
         },
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
