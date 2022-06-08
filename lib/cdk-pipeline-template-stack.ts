@@ -18,21 +18,21 @@ export class CdkPipelineTemplateStack extends Stack {
       connectionArn: codestarConnectionArn
     });
 
-  //   const lambdaBuildStep = new CodeBuildStep('BuildLambda', {
-  //     buildEnvironment: {
-  //         buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3
-  //     },
-  //     input: lambdaCodePipelineSource,
-  //     commands: [`mvn clean install`, `mvn clean package`]
-  // })
+    const lambdaBuildStep = new CodeBuildStep('BuildLambda', {
+      buildEnvironment: {
+          buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3
+      },
+      input: lambdaCodePipelineSource,
+      commands: [`mvn clean install`, `mvn clean package`]
+  })
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'CdkTemplatePipeline',
       crossAccountKeys: true,
       synth: new ShellStep('Synth', {
         input: cdkCodePipelineSource,
-        // additionalInputs: {
-        //   'lambda': lambdaBuildStep.addOutputDirectory(''),
-        // },
+        additionalInputs: {
+          'lambda': lambdaBuildStep.addOutputDirectory(''),
+        },
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
     });
