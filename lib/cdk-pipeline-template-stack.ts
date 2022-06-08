@@ -23,16 +23,15 @@ export class CdkPipelineTemplateStack extends Stack {
           buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3
       },
       input: lambdaCodePipelineSource,
-      commands: [`mvn clean install`, `mvn clean package`]
+      commands: [`echo ${process.env.CODEBUILD_SRC_DIR}`, `mvn clean install`, `mvn clean package`]
   })
-    const directory = process.env.CODEBUILD_SRC_DIR || "";
     const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'CdkTemplatePipeline',
       crossAccountKeys: true,
       synth: new ShellStep('Synth', {
         input: cdkCodePipelineSource,
         additionalInputs: {
-          'lambda': lambdaBuildStep.addOutputDirectory(directory),
+          'lambda': lambdaBuildStep.addOutputDirectory(''),
         },
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
