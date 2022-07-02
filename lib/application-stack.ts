@@ -16,10 +16,7 @@ export class ApplicationStack extends cdk.Stack {
       });
       const lambdaRestApi = new apigateway.LambdaRestApi(this, 'LambdaApi', {
         handler: lambda,
-        proxy: false,
-        defaultMethodOptions: {
-          authorizationType: apigateway.AuthorizationType.COGNITO
-        }
+        proxy: false
       });
       const test = lambdaRestApi.root.addResource("test");
       test.addMethod('GET', new LambdaIntegration(lambda))
